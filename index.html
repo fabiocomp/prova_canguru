@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filhotes do Canguru – Carandá Educação</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple:      #7B1F7A;
+  --purple-dark: #5A1459;
+  --purple-light:#A034A0;
+  --purple-pale: #F5EBF5;
+  --orange:      #F4831F;
+  --orange-light:#F9A85D;
+  --pink:        #D4547A;
+  --pink-light:  #E8869E;
+  --blue-gray:   #6B8CAE;
+  --blue-light:  #9BB5CC;
+  --green:       #2ECC71;
+  --green-dark:  #27AE60;
+  --yellow:      #F4C430;
+  --red:         #E74C3C;
+  --bg:          #FAF5FB;
+  --text:        #2A1230;
+  --text-muted:  #7A5C8A;
+  --white:       #FFFFFF;
+  --shadow:      0 4px 20px rgba(123,31,122,0.13);
+  --radius:      16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── GEOMETRIC PATTERN BACKGROUND ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 90% 10%, rgba(244,131,31,0.07) 0%, transparent 50%),
+    radial-gradient(circle at 10% 90%, rgba(212,84,122,0.07) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(123,31,122,0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--purple);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 3px 20px rgba(90,20,89,0.45);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 64px;
+  gap: 12px;
+}
+
+/* Geometric strip at bottom of header */
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg,
+    var(--orange) 0%, var(--orange) 25%,
+    var(--pink) 25%, var(--pink) 50%,
+    var(--blue-gray) 50%, var(--blue-gray) 75%,
+    var(--purple-light) 75%, var(--purple-light) 100%);
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Carandá SVG logo – symbol + wordmark */
+.logo-svg-symbol {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.logo-wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo-wordmark .wm-main {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.22rem;
+  color: white;
+  letter-spacing: 0.5px;
+  text-transform: lowercase;
+}
+
+.logo-wordmark .wm-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.56rem;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+.logo-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255,255,255,0.3);
+  margin: 0 4px;
+}
+
+.logo-game-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.countdown-badge {
+  background: rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255,255,255,0.35);
+  border-radius: 10px;
+  padding: 5px 12px;
+  color: white;
+  font-weight: 800;
+  font-size: 0.78rem;
+  text-align: center;
+  line-height: 1.3;
+}
+.countdown-badge strong {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.btn-header {
+  background: rgba(255,255,255,0.18);
+  color: white;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  padding: 7px 14px;
+  border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-header:hover { background: rgba(255,255,255,0.3); }
+
+/* ── SCREENS ── */
+.screen { display: none; position: relative; z-index: 1; }
+.screen.active { display: block; }
+
+/* ── GEOMETRIC DECO STRIP ── */
+.geo-strip {
+  height: 32px;
+  display: flex;
+  overflow: hidden;
+}
+.geo-strip span {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ────────────────────────────────────
+   HOME SCREEN
+──────────────────────────────────── */
+#screen-home {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 36px 20px 48px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.hero-kanga {
+  font-size: 5.5rem;
+  display: inline-block;
+  animation: kangaJump 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 6px 12px rgba(123,31,122,0.25));
+}
+@keyframes kangaJump {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  35%      { transform: translateY(-22px) rotate(-6deg); }
+  60%      { transform: translateY(-16px) rotate(4deg); }
+}
+
+.hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 2.2rem;
+  color: var(--purple);
+  margin: 10px 0 4px;
+  line-height: 1.15;
+}
+
+.hero p {
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.hero-geo {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 14px 0 0;
+  font-size: 1.3rem;
+}
+
+.register-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 30px 32px;
+  box-shadow: var(--shadow);
+  border: 2px solid rgba(123,31,122,0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.register-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--purple), var(--pink), var(--orange), var(--blue-gray));
+}
+
+.register-card h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  color: var(--purple);
+  font-size: 1.35rem;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.form-group { margin-bottom: 16px; }
+
+.form-group label {
+  display: block;
+  font-weight: 800;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid rgba(123,31,122,0.2);
+  border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--purple-pale);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  -webkit-appearance: none;
+}
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--purple);
+  background: white;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 15px;
+  background: var(--purple);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.22s;
+  box-shadow: 0 4px 18px rgba(123,31,122,0.38);
+  margin-top: 8px;
+  letter-spacing: 0.3px;
+}
+.btn-primary:hover  { background: var(--purple-dark); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(123,31,122,0.45); }
+.btn-primary:active { transform: translateY(0); }
+
+.home-note {
+  text-align: center;
+  margin-top: 18px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* ────────────────────────────────────
+   DASHBOARD
+──────────────────────────────────── */
+#screen-dashboard { max-width: 820px; margin: 0 auto; padding: 26px 20px; }
+
+.welcome-banner {
+  background: var(--purple);
+  border-radius: var(--radius);
+  padding: 20px 26px;
+  color: white;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 18px rgba(123,31,122,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Geometric shapes inside banner */
+.welcome-banner::before {
+  content: '';
+  position: absolute;
+  right: -20px; top: -20px;
+  width: 120px; height: 120px;
+  background: rgba(244,131,31,0.25);
+  border-radius: 50%;
+}
+.welcome-banner::after {
+  content: '';
+  position: absolute;
+  right: 60px; bottom: -30px;
+  width: 80px; height: 80px;
+  background: rgba(212,84,122,0.2);
+  transform: rotate(45deg);
+  border-radius: 6px;
+}
+
+.welcome-banner h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.35rem;
+  position: relative; z-index: 1;
+}
+.welcome-banner p {
+  font-size: 0.88rem;
+  opacity: 0.88;
+  font-weight: 700;
+  position: relative; z-index: 1;
+  margin-top: 3px;
+}
+.welcome-kanga { font-size: 2.8rem; animation: kangaJump 2s infinite; position: relative; z-index: 1; }
+
+/* Streak bar */
+.streak-bar {
+  background: linear-gradient(135deg, #D4381A, var(--orange));
+  border-radius: 12px;
+  padding: 12px 18px;
+  color: white;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 3px 14px rgba(244,131,31,0.35);
+}
+.streak-fire { font-size: 1.8rem; animation: flicker 1s infinite; }
+@keyframes flicker {
+  0%,100% { transform: scale(1) rotate(-3deg); }
+  50%      { transform: scale(1.12) rotate(3deg); }
+}
+.streak-bar h3 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1rem; }
+.streak-bar p  { font-size: 0.78rem; opacity: 0.9; font-weight: 700; }
+
+/* Daily info bar */
+.daily-bar {
+  background: white;
+  border-radius: 12px;
+  padding: 13px 18px;
+  border: 2px solid rgba(123,31,122,0.12);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  box-shadow: var(--shadow);
+}
+.daily-item { text-align: center; }
+.daily-item .di-val {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--purple);
+}
+.daily-item .di-lbl {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Stats grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.stat-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 2px solid transparent;
+  transition: transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+}
+.stat-card.sc-gold::after   { background: var(--yellow); }
+.stat-card.sc-green::after  { background: var(--green); }
+.stat-card.sc-blue::after   { background: var(--blue-gray); }
+.stat-card:hover { transform: translateY(-3px); }
+.stat-icon  { font-size: 1.8rem; margin-bottom: 5px; }
+.stat-value { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.8rem; color: var(--purple); }
+.stat-label { font-size: 0.7rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px; }
+
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: var(--purple);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Mode cards */
+.modes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.mode-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 22px 18px;
+  cursor: pointer;
+  transition: all 0.22s;
+  box-shadow: var(--shadow);
+  border: 2px solid transparent;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.mode-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+}
+.mc-purple::before { background: linear-gradient(90deg, var(--purple), var(--purple-light)); }
+.mc-orange::before { background: linear-gradient(90deg, var(--orange), var(--orange-light)); }
+.mc-pink::before   { background: linear-gradient(90deg, var(--pink), var(--pink-light)); }
+.mc-blue::before   { background: linear-gradient(90deg, var(--blue-gray), var(--blue-light)); }
+
+/* Geometric shape behind mode icon */
+.mode-card .geo-bg {
+  position: absolute;
+  right: -16px; top: -16px;
+  width: 70px; height: 70px;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+.mc-purple .geo-bg { background: var(--purple); }
+.mc-orange .geo-bg { background: var(--orange); }
+.mc-pink   .geo-bg { background: var(--pink); }
+.mc-blue   .geo-bg { background: var(--blue-gray); }
+
+.mode-card:hover { transform: translateY(-5px); box-shadow: 0 8px 28px rgba(123,31,122,0.18); }
+.mc-purple:hover { border-color: var(--purple-light); }
+.mc-orange:hover { border-color: var(--orange-light); }
+.mc-pink:hover   { border-color: var(--pink-light); }
+.mc-blue:hover   { border-color: var(--blue-light); }
+
+.mode-icon  { font-size: 2.4rem; margin-bottom: 9px; position: relative; z-index: 1; }
+.mode-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.02rem; color: var(--text); margin-bottom: 5px; position: relative; z-index: 1; }
+.mode-desc  { font-size: 0.74rem; color: var(--text-muted); font-weight: 700; position: relative; z-index: 1; }
+
+.badge-diario {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: var(--orange);
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 900;
+  padding: 3px 7px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+/* Achievements */
+.ach-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 10px;
+}
+.ach-item {
+  background: white;
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 2px solid transparent;
+  opacity: 0.4;
+  transition: all 0.3s;
+}
+.ach-item.unlocked {
+  opacity: 1;
+  border-color: var(--yellow);
+  background: linear-gradient(135deg, #FFFBEA, white);
+}
+.ach-icon { font-size: 1.5rem; }
+.ach-name {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+/* ────────────────────────────────────
+   QUIZ SCREEN
+──────────────────────────────────── */
+#screen-quiz { max-width: 700px; margin: 0 auto; padding: 24px 20px; }
+
+.quiz-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.quiz-meta { display: flex; align-items: center; gap: 10px; }
+.quiz-badge {
+  background: var(--purple);
+  color: white;
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.timer-ring {
+  position: relative;
+  width: 56px; height: 56px;
+  flex-shrink: 0;
+}
+.timer-ring svg { transform: rotate(-90deg); }
+.timer-ring .ring-bg  { fill: none; stroke: rgba(123,31,122,0.12); stroke-width: 4; }
+.timer-ring .ring-val { fill: none; stroke: var(--purple); stroke-width: 4; stroke-linecap: round; transition: stroke-dashoffset 0.9s linear, stroke 0.3s; }
+.timer-ring .ring-val.warn { stroke: var(--red); }
+.timer-num {
+  position: absolute;
+  inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: var(--purple);
+}
+.timer-num.warn { color: var(--red); animation: pulse 0.5s infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+
+.progress-track {
+  background: rgba(123,31,122,0.12);
+  border-radius: 20px;
+  height: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), var(--pink), var(--orange));
+  border-radius: 20px;
+  transition: width 0.4s ease;
+}
+
+.q-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 26px 28px;
+  box-shadow: var(--shadow);
+  margin-bottom: 18px;
+  border: 2px solid rgba(123,31,122,0.1);
+  position: relative;
+  overflow: hidden;
+}
+.q-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--purple), var(--pink), var(--orange));
+}
+.q-num   { font-size: 0.74rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+.q-text  { font-size: 1.12rem; font-weight: 800; color: var(--text); line-height: 1.5; margin-bottom: 10px; }
+.q-level { display: inline-block; font-size: 0.7rem; font-weight: 900; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.4px; }
+.lv-f { background: #D5F5E3; color: #1A7A42; }
+.lv-m { background: #FEF9E7; color: #9A7A00; }
+.lv-d { background: #FDEDEC; color: var(--red); }
+
+.opts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+
+.opt-btn {
+  padding: 14px 14px;
+  background: var(--purple-pale);
+  border: 2px solid rgba(123,31,122,0.18);
+  border-radius: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.18s;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.opt-btn:hover:not(:disabled) {
+  border-color: var(--purple);
+  background: white;
+  transform: scale(1.02);
+  box-shadow: 0 3px 12px rgba(123,31,122,0.15);
+}
+.opt-letter {
+  background: var(--purple);
+  color: white;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 900;
+  flex-shrink: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.opt-btn.correct { background: #D5F5E3; border-color: var(--green); color: #1A6E38; animation: popIn 0.35s ease; }
+.opt-btn.correct .opt-letter { background: var(--green-dark); }
+.opt-btn.wrong   { background: #FDEDEC; border-color: var(--red); color: var(--red); }
+.opt-btn.wrong   .opt-letter { background: var(--red); }
+@keyframes popIn { 0%{transform:scale(1)} 45%{transform:scale(1.06)} 100%{transform:scale(1)} }
+
+/* Feedback overlay */
+.overlay-bg { position: fixed; inset: 0; background: rgba(42,18,48,0.4); z-index: 150; display: none; }
+.overlay-bg.show { display: block; }
+
+.feedback-pop {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%) scale(0);
+  background: white;
+  border-radius: 22px;
+  padding: 28px 42px;
+  text-align: center;
+  z-index: 200;
+  box-shadow: 0 12px 48px rgba(42,18,48,0.25);
+  border: 4px solid var(--green);
+  transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1);
+  min-width: 220px;
+}
+.feedback-pop.show { transform: translate(-50%,-50%) scale(1); }
+.feedback-pop.err  { border-color: var(--red); }
+.fb-emoji  { font-size: 3.2rem; }
+.fb-title  { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.5rem; margin: 7px 0 4px; }
+.feedback-pop:not(.err) .fb-title { color: var(--green-dark); }
+.feedback-pop.err .fb-title       { color: var(--red); }
+.fb-pts    { font-weight: 800; color: var(--text-muted); font-size: 0.88rem; }
+
+/* ────────────────────────────────────
+   RESULT SCREEN
+──────────────────────────────────── */
+#screen-result { max-width: 580px; margin: 0 auto; padding: 36px 20px; text-align: center; }
+
+.result-trophy { font-size: 4.5rem; animation: spinIn 0.7s ease; display: block; }
+@keyframes spinIn { 0%{transform:rotate(-20deg) scale(0.5)} 100%{transform:rotate(0) scale(1)} }
+
+.result-h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 2rem; color: var(--purple); margin: 8px 0 4px; }
+.result-sub { color: var(--text-muted); font-weight: 700; font-size: 0.95rem; }
+
+.result-score-card {
+  background: var(--purple);
+  border-radius: var(--radius);
+  padding: 26px;
+  color: white;
+  margin: 20px 0;
+  box-shadow: 0 6px 24px rgba(123,31,122,0.4);
+  position: relative;
+  overflow: hidden;
+}
+.result-score-card::after {
+  content: '';
+  position: absolute;
+  right: -24px; top: -24px;
+  width: 110px; height: 110px;
+  background: rgba(244,131,31,0.22);
+  border-radius: 50%;
+}
+.rsc-pts { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 3.8rem; line-height: 1; position: relative; z-index: 1; }
+.rsc-lbl { font-size: 0.82rem; font-weight: 700; opacity: 0.85; position: relative; z-index: 1; }
+.rsc-breakdown {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px; margin-top: 14px;
+  position: relative; z-index: 1;
+}
+.rsc-item {
+  background: rgba(255,255,255,0.18);
+  border-radius: 10px;
+  padding: 9px;
+}
+.rsc-item strong { display: block; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.4rem; }
+.rsc-item span   { font-size: 0.7rem; font-weight: 700; opacity: 0.9; }
+
+.ach-unlock-box {
+  background: #FFFBEA;
+  border: 2px solid var(--yellow);
+  border-radius: 12px;
+  padding: 14px;
+  margin: 10px 0;
+  display: none;
+}
+
+.btn-group { display: flex; gap: 12px; margin-top: 18px; }
+
+.btn-secondary {
+  flex: 1; padding: 14px;
+  background: white;
+  color: var(--purple);
+  border: 2px solid var(--purple);
+  border-radius: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { background: var(--purple-pale); transform: translateY(-2px); }
+
+.btn-ranking {
+  flex: 1; padding: 14px;
+  background: var(--orange);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(244,131,31,0.4);
+}
+.btn-ranking:hover { background: #D4711A; transform: translateY(-2px); }
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: white;
+  border: 2px solid rgba(123,31,122,0.2);
+  border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-back:hover { border-color: var(--purple); color: var(--purple); }
+
+/* ────────────────────────────────────
+   RANKING SCREEN
+──────────────────────────────────── */
+#screen-ranking { max-width: 760px; margin: 0 auto; padding: 24px 20px; }
+
+.rank-tabs {
+  display: flex;
+  gap: 6px;
+  background: white;
+  border-radius: 14px;
+  padding: 5px;
+  box-shadow: var(--shadow);
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.rank-tab {
+  flex: 1;
+  min-width: 80px;
+  padding: 9px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.rank-tab.active { background: var(--purple); color: white; box-shadow: 0 3px 10px rgba(123,31,122,0.3); }
+
+.rank-filter {
+  display: flex; gap: 10px; align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.rank-filter label { font-weight: 800; color: var(--text-muted); font-size: 0.8rem; }
+.rank-filter select {
+  padding: 7px 12px;
+  border: 2px solid rgba(123,31,122,0.18);
+  border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--text);
+  background: white;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Podium */
+.podium-wrap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  padding: 0 10px;
+}
+.podium-col { text-align: center; flex: 1; }
+.podium-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: white;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 7px;
+  font-size: 1.4rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border: 3px solid transparent;
+}
+.podium-col:nth-child(1) .podium-avatar { border-color: #C0C0C0; }
+.podium-col:nth-child(2) .podium-avatar { border-color: var(--yellow); width: 64px; height: 64px; font-size: 1.9rem; }
+.podium-col:nth-child(3) .podium-avatar { border-color: #CD7F32; }
+
+.podium-name  { font-weight: 800; font-size: 0.75rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-bottom: 3px; }
+.podium-score { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 0.9rem; color: var(--purple); margin-bottom: 5px; }
+.podium-block { border-radius: 10px 10px 0 0; width: 100%; display: flex; align-items: center; justify-content: center; }
+.podium-col:nth-child(1) .podium-block { background: linear-gradient(180deg,#D8D8D8,#B0B0B0); height: 58px; }
+.podium-col:nth-child(2) .podium-block { background: linear-gradient(180deg,#FFE566,var(--yellow)); height: 84px; }
+.podium-col:nth-child(3) .podium-block { background: linear-gradient(180deg,#E5A85A,#CD7F32); height: 40px; }
+.podium-medal { font-size: 1.6rem; }
+
+/* Rank list */
+.rank-list { display: flex; flex-direction: column; gap: 9px; }
+.rank-row {
+  background: white;
+  border-radius: 13px;
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow);
+  border: 2px solid transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+.rank-row:hover { transform: translateX(4px); }
+.rank-row.r1 { border-color: var(--yellow); background: linear-gradient(135deg,#FFFCEB,white); }
+.rank-row.r2 { border-color: #C0C0C0; background: linear-gradient(135deg,#F7F7F7,white); }
+.rank-row.r3 { border-color: #CD7F32; background: linear-gradient(135deg,#FFF4EA,white); }
+.rank-row.is-me { border-color: var(--purple-light); background: linear-gradient(135deg,#F5EBF5,white); }
+
+.rr-pos {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--purple-pale);
+  color: var(--text-muted);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.rr-pos.g { background: var(--yellow); color: #7A5A00; font-size: 1.1rem; }
+.rr-pos.s { background: #C0C0C0; color: white; font-size: 1.1rem; }
+.rr-pos.b { background: #CD7F32; color: white; font-size: 1.1rem; }
+
+.rr-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.rr-info { flex: 1; min-width: 0; }
+.rr-name { font-weight: 800; font-size: 0.92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rr-class { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); margin-top: 2px; }
+.rr-score { text-align: right; flex-shrink: 0; }
+.rr-pts { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.2rem; color: var(--purple); }
+.rr-lbl { font-size: 0.65rem; font-weight: 800; color: var(--text-muted); }
+.me-tag {
+  position: absolute; right: 60px; top: 50%; transform: translateY(-50%);
+  background: var(--purple); color: white;
+  font-size: 0.58rem; font-weight: 900; padding: 2px 7px; border-radius: 10px;
+  text-transform: uppercase; letter-spacing: 0.3px;
+}
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--purple-dark);
+  color: white;
+  padding: 11px 24px;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 0.88rem;
+  z-index: 300;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(90,20,89,0.4);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:520px){
+  .stats-grid { grid-template-columns:1fr 1fr; }
+  .stats-grid .stat-card:last-child { grid-column:1/-1; }
+  .modes-grid { grid-template-columns:1fr; }
+  .opts-grid  { grid-template-columns:1fr; }
+  .ach-grid   { grid-template-columns:repeat(3,1fr); }
+  .btn-group  { flex-direction:column; }
+  .logo-divider,.logo-game-name { display:none; }
+  .rank-tabs  { gap:4px; }
+  .rank-tab   { font-size:0.72rem; padding:8px 6px; }
+  .daily-bar  { justify-content:space-between; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     HEADER
+══════════════════════════════════ -->
+<header>
+  <div class="logo-wrap" onclick="player && showScreen('dashboard')">
+    <!-- Carandá symbol SVG (infinity-knot style, reproduced as geometric approximation) -->
+    <svg class="logo-svg-symbol" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer ring -->
+      <circle cx="20" cy="20" r="18" stroke="white" stroke-width="2" fill="none" opacity="0.35"/>
+      <!-- Inner interlocking loops inspired by the Carandá mark -->
+      <path d="M12 20 C12 14 16 11 20 14 C24 17 24 23 20 26 C16 29 12 26 12 20Z"
+            stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M28 20 C28 26 24 29 20 26 C16 23 16 17 20 14 C24 11 28 14 28 20Z"
+            stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <!-- Orange accent dot -->
+      <circle cx="20" cy="14" r="2.2" fill="#F4831F"/>
+      <circle cx="20" cy="26" r="2.2" fill="#D4547A"/>
+    </svg>
+    <div class="logo-wordmark">
+      <span class="wm-main">carandá</span>
+      <span class="wm-sub">educação</span>
+    </div>
+    <div class="logo-divider"></div>
+    <div class="logo-game-name">🦘 Filhotes do Canguru</div>
+  </div>
+
+  <div class="header-right">
+    <div class="countdown-badge">
+      <strong id="countdown-num">7</strong>
+      dias para a prova!
+    </div>
+    <button class="btn-header" id="btn-rank-hdr" style="display:none" onclick="showScreen('ranking')">🏆 Ranking</button>
+  </div>
+</header>
+
+<!-- Feedback overlay -->
+<div class="overlay-bg" id="overlay-bg"></div>
+<div class="feedback-pop" id="feedback-pop">
+  <div class="fb-emoji" id="fb-emoji">🎉</div>
+  <div class="fb-title" id="fb-title">Correto!</div>
+  <div class="fb-pts"   id="fb-pts">+10 pontos</div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ══════════════════════════════════
+     SCREEN: HOME
+══════════════════════════════════ -->
+<div class="screen active" id="screen-home">
+  <div id="screen-home-inner" style="max-width:620px;margin:0 auto;padding:36px 20px 48px;">
+
+    <div class="hero">
+      <span class="hero-kanga">🦘</span>
+      <h1>Filhotes do Canguru</h1>
+      <p>Prepare-se para a prova com diversão!</p>
+      <div class="hero-geo">🟣🟠🔵🩷🟡</div>
+    </div>
+
+    <div class="register-card">
+      <h2>🚀 Entrar e Jogar</h2>
+
+      <div class="form-group">
+        <label>Seu nome completo</label>
+        <input type="text" id="input-name" placeholder="Ex: Maria Luiza Santos" maxlength="50"/>
+      </div>
+
+      <div class="form-group">
+        <label>Sua turma</label>
+        <select id="input-class">
+          <option value="">-- Selecione sua turma --</option>
+          <option value="4º Ano A Manhã">4º Ano A Manhã</option>
+          <option value="4º Ano B Manhã">4º Ano B Manhã</option>
+          <option value="4º Ano A Tarde">4º Ano A Tarde</option>
+          <option value="4º Ano B Tarde">4º Ano B Tarde</option>
+        </select>
+      </div>
+
+      <button class="btn-primary" onclick="handleLogin()">🦘 Entrar e Jogar!</button>
+    </div>
+
+    <p class="home-note">🔒 Seus pontos são salvos automaticamente • Jogue todos os dias!</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN: DASHBOARD
+══════════════════════════════════ -->
+<div class="screen" id="screen-dashboard">
+  <div style="max-width:820px;margin:0 auto;padding:26px 20px;">
+
+    <div class="welcome-banner">
+      <div>
+        <h2>Olá, <span id="dash-name">Filhote</span>! 👋</h2>
+        <p>Turma: <span id="dash-class">—</span> &nbsp;|&nbsp; Bora treinar!</p>
+      </div>
+      <span class="welcome-kanga">🦘</span>
+    </div>
+
+    <div class="streak-bar" id="streak-bar">
+      <span class="streak-fire">🔥</span>
+      <div>
+        <h3>Sequência de <span id="streak-val">0</span> dia(s)!</h3>
+        <p>Jogue hoje para manter sua chama acesa!</p>
+      </div>
+    </div>
+
+    <div class="daily-bar">
+      <div class="daily-item"><div class="di-val" id="di-jogadas">0</div><div class="di-lbl">Rodadas hoje</div></div>
+      <div class="daily-item" style="color:rgba(123,31,122,0.2);font-size:1.5rem">|</div>
+      <div class="daily-item"><div class="di-val" id="di-pts-hoje">0</div><div class="di-lbl">Pts hoje</div></div>
+      <div class="daily-item" style="color:rgba(123,31,122,0.2);font-size:1.5rem">|</div>
+      <div class="daily-item"><div class="di-val" id="di-pts-total">0</div><div class="di-lbl">Pts total</div></div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card sc-gold">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-value" id="stat-pos">—</div>
+        <div class="stat-label">Posição Geral</div>
+      </div>
+      <div class="stat-card sc-green">
+        <div class="stat-icon">✅</div>
+        <div class="stat-value" id="stat-acertos">0</div>
+        <div class="stat-label">Total Acertos</div>
+      </div>
+      <div class="stat-card sc-blue">
+        <div class="stat-icon">🔥</div>
+        <div class="stat-value" id="stat-streak">0</div>
+        <div class="stat-label">Dias Seguidos</div>
+      </div>
+    </div>
+
+    <div class="section-title">🎮 Escolha o Modo de Jogo</div>
+    <div class="modes-grid">
+      <div class="mode-card mc-purple" onclick="startQuiz('daily')">
+        <div class="geo-bg"></div>
+        <span class="badge-diario">DIÁRIO</span>
+        <div class="mode-icon">📅</div>
+        <div class="mode-title">Desafio do Dia</div>
+        <div class="mode-desc">10 questões • Vale pontos extras! • Máx 5 rodadas/dia</div>
+      </div>
+      <div class="mode-card mc-orange" onclick="startQuiz('treino')">
+        <div class="geo-bg"></div>
+        <div class="mode-icon">🧠</div>
+        <div class="mode-title">Treino Livre</div>
+        <div class="mode-desc">Pratique sem pressão • Todas as categorias</div>
+      </div>
+      <div class="mode-card mc-pink" onclick="startQuiz('rapido')">
+        <div class="geo-bg"></div>
+        <div class="mode-icon">⚡</div>
+        <div class="mode-title">Relâmpago</div>
+        <div class="mode-desc">5 questões em tempo reduzido • Bônus velocidade!</div>
+      </div>
+      <div class="mode-card mc-blue" onclick="showScreen('ranking')">
+        <div class="geo-bg"></div>
+        <div class="mode-icon">🏅</div>
+        <div class="mode-title">Ranking</div>
+        <div class="mode-desc">Diário, geral e por turma • Veja sua posição!</div>
+      </div>
+    </div>
+
+    <div class="section-title">🎖 Conquistas</div>
+    <div class="ach-grid" id="ach-grid"></div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN: QUIZ
+══════════════════════════════════ -->
+<div class="screen" id="screen-quiz">
+  <div style="max-width:700px;margin:0 auto;padding:24px 20px;">
+
+    <div class="quiz-topbar">
+      <div class="quiz-meta">
+        <button class="btn-back" onclick="showScreen('dashboard')">← Sair</button>
+        <span class="quiz-badge" id="quiz-mode-badge">Desafio</span>
+      </div>
+      <div class="timer-ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle class="ring-bg" cx="28" cy="28" r="22"/>
+          <circle class="ring-val" id="ring-val" cx="28" cy="28" r="22"
+            stroke-dasharray="138.2" stroke-dashoffset="0"/>
+        </svg>
+        <div class="timer-num" id="timer-num">30</div>
+      </div>
+    </div>
+
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num"  id="q-num">Questão 1 de 10</div>
+      <div class="q-text" id="q-text">Carregando…</div>
+      <span class="q-level lv-f" id="q-level">🟢 Fácil</span>
+    </div>
+
+    <div class="opts-grid" id="opts-grid"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN: RESULT
+══════════════════════════════════ -->
+<div class="screen" id="screen-result">
+  <div style="max-width:580px;margin:0 auto;padding:36px 20px;text-align:center;">
+    <span class="result-trophy" id="result-trophy">🏆</span>
+    <div class="result-h1" id="result-h1">Muito bem!</div>
+    <div class="result-sub" id="result-sub">Você completou a rodada!</div>
+
+    <div class="result-score-card">
+      <div class="rsc-pts" id="rsc-pts">0</div>
+      <div class="rsc-lbl">PONTOS CONQUISTADOS</div>
+      <div class="rsc-breakdown">
+        <div class="rsc-item"><strong id="rb-c">0</strong><span>Acertos</span></div>
+        <div class="rsc-item"><strong id="rb-w">0</strong><span>Erros</span></div>
+        <div class="rsc-item"><strong id="rb-b">0</strong><span>Bônus</span></div>
+      </div>
+    </div>
+
+    <div class="ach-unlock-box" id="ach-unlock-box">
+      <div id="aub-icon" style="font-size:2rem">⭐</div>
+      <div id="aub-name" style="font-family:'Montserrat',sans-serif;font-weight:900;color:var(--purple);font-size:1rem;margin-top:4px">Nova conquista!</div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn-secondary" onclick="startQuiz(currentMode)">🔄 Jogar de novo</button>
+      <button class="btn-ranking"   onclick="showScreen('ranking')">🏆 Ver Ranking</button>
+    </div>
+    <button class="btn-back" style="margin-top:12px;width:100%;justify-content:center;" onclick="showScreen('dashboard')">🏠 Início</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN: RANKING
+══════════════════════════════════ -->
+<div class="screen" id="screen-ranking">
+  <div style="max-width:760px;margin:0 auto;padding:24px 20px;">
+    <button class="btn-back" onclick="showScreen('dashboard')">← Voltar</button>
+    <div class="section-title">🏆 Ranking dos Filhotes</div>
+
+    <div class="rank-tabs">
+      <button class="rank-tab active" onclick="switchTab('daily',this)">📅 Hoje</button>
+      <button class="rank-tab" onclick="switchTab('total',this)">🏆 Geral</button>
+      <button class="rank-tab" onclick="switchTab('class',this)">🏫 Por Turma</button>
+      <button class="rank-tab" onclick="switchTab('streak',this)">🔥 Sequência</button>
+    </div>
+
+    <div class="rank-filter">
+      <label>Filtrar:</label>
+      <select id="rank-filter" onchange="renderRanking()">
+        <option value="all">Todas as turmas</option>
+        <option value="4º Ano A Manhã">4º Ano A Manhã</option>
+        <option value="4º Ano B Manhã">4º Ano B Manhã</option>
+        <option value="4º Ano A Tarde">4º Ano A Tarde</option>
+        <option value="4º Ano B Tarde">4º Ano B Tarde</option>
+      </select>
+    </div>
+
+    <div class="podium-wrap" id="podium-wrap"></div>
+    <div class="rank-list"   id="rank-list"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════ -->
+<script>
+/* ── QUESTION BANK ─────────────────────────────────────── */
+const QB = [
+  // Aritmética / Operações
+  {q:"Qual é o resultado de 7 × 8 + 4?",         opts:["56","60","58","64"],    ans:1, lvl:"facil", cat:"Aritmética"},
+  {q:"Uma dúzia de laranjas custa R$6,00. Qual o preço de cada laranja?", opts:["R$0,40","R$0,50","R$0,60","R$0,75"], ans:1, lvl:"facil", cat:"Aritmética"},
+  {q:"Se 2/5 de um número é 20, quanto é esse número?", opts:["40","50","8","25"], ans:1, lvl:"medio", cat:"Aritmética"},
+  {q:"Qual fração é equivalente a 3/4?",          opts:["6/9","9/12","4/5","15/24"], ans:1, lvl:"facil", cat:"Aritmética"},
+  {q:"Quanto é 25% de 200?",                      opts:["25","40","50","75"],    ans:2, lvl:"facil", cat:"Aritmética"},
+  {q:"O dobro de um número menos 5 é igual a 17. Qual é esse número?", opts:["6","11","9","13"], ans:1, lvl:"medio", cat:"Aritmética"},
+  {q:"Qual é o maior número de 4 algarismos usando 1, 2, 3 e 4 sem repetição?", opts:["1234","4321","3421","4231"], ans:1, lvl:"facil", cat:"Aritmética"},
+  {q:"Quantos inteiros de 1 a 100 são divisíveis por 3 E por 5?", opts:["5","6","7","8"], ans:1, lvl:"dificil", cat:"Aritmética"},
+  {q:"Se você inverter os dígitos de 47 e somar os dois números, qual o resultado?", opts:["115","121","111","119"], ans:2, lvl:"medio", cat:"Aritmética"},
+  // Geometria
+  {q:"Quantos lados tem um hexágono?",             opts:["5","6","7","8"],        ans:1, lvl:"facil", cat:"Geometria"},
+  {q:"Qual é a área de um retângulo de 8 cm × 5 cm?", opts:["26 cm²","40 cm²","13 cm²","45 cm²"], ans:1, lvl:"facil", cat:"Geometria"},
+  {q:"A soma dos ângulos internos de um triângulo é:", opts:["90°","180°","270°","360°"], ans:1, lvl:"facil", cat:"Geometria"},
+  {q:"Um cubo tem quantas faces?",                 opts:["4","6","8","12"],       ans:1, lvl:"facil", cat:"Geometria"},
+  {q:"Qual é o perímetro de um quadrado de lado 7 cm?", opts:["14 cm","21 cm","28 cm","49 cm"], ans:2, lvl:"facil", cat:"Geometria"},
+  {q:"Um triângulo equilátero tem lados de 9 cm. Qual é seu perímetro?", opts:["18 cm","27 cm","81 cm","36 cm"], ans:1, lvl:"facil", cat:"Geometria"},
+  {q:"Quantas arestas tem um cubo?",               opts:["6","8","12","16"],      ans:2, lvl:"medio", cat:"Geometria"},
+  {q:"Uma circunferência tem diâmetro 10 cm. Qual é o raio?", opts:["5 cm","20 cm","10 cm","3,14 cm"], ans:0, lvl:"facil", cat:"Geometria"},
+  // Lógica
+  {q:"Em uma fila há 10 pessoas. Ana é a 3ª da frente e a ___ª do final.", opts:["7ª","8ª","9ª","6ª"], ans:1, lvl:"medio", cat:"Lógica"},
+  {q:"Qual número vem a seguir: 2, 4, 8, 16, ___?", opts:["18","24","32","20"],  ans:2, lvl:"facil", cat:"Lógica"},
+  {q:"Qual número vem a seguir: 1, 1, 2, 3, 5, 8, ___?", opts:["10","11","13","16"], ans:2, lvl:"medio", cat:"Lógica"},
+  {q:"Se ABCD = 1234 e DCBA = 4321, quanto vale ABBA?", opts:["1221","1212","2112","2121"], ans:0, lvl:"medio", cat:"Lógica"},
+  {q:"Pedro tem 8 balas. Deu metade para Clara e ganhou 3 de João. Quantas tem agora?", opts:["4","7","11","9"], ans:1, lvl:"facil", cat:"Lógica"},
+  {q:"Em que dia cai o 20º dia se o 1º é segunda-feira?", opts:["Sábado","Domingo","Segunda","Sexta"], ans:3, lvl:"medio", cat:"Lógica"},
+  {q:"Se todos os gatos são animais e Rex é um gato, então Rex é:", opts:["Um animal","Um cachorro","Um peixe","Nada disso"], ans:0, lvl:"facil", cat:"Lógica"},
+  // Problemas
+  {q:"Um muro tem 40 m. Plantamos 1 árvore a cada 5 m, incluindo as pontas. Quantas árvores?", opts:["8","9","10","7"], ans:1, lvl:"medio", cat:"Problemas"},
+  {q:"Se 3 caixas custam R$15,00, quanto custam 7 caixas?", opts:["R$25","R$35","R$40","R$30"], ans:1, lvl:"facil", cat:"Problemas"},
+  {q:"Um comerciante comprou 5 kg de maçãs a R$2,00/kg e vendeu a R$3,00/kg. Qual foi o lucro?", opts:["R$5,00","R$10,00","R$15,00","R$20,00"], ans:0, lvl:"medio", cat:"Problemas"},
+  {q:"Um relógio atrasa 3 minutos por dia. Em uma semana, qual o atraso total?", opts:["14 min","18 min","21 min","24 min"], ans:2, lvl:"facil", cat:"Problemas"},
+  {q:"Uma torneira enche um tanque em 6 horas. Outra enche em 3 horas. Juntas, em quantas horas enchem?", opts:["2h","4h","4,5h","9h"], ans:0, lvl:"dificil", cat:"Problemas"},
+  {q:"Numa turma de 30 alunos, 18 gostam de mat e 14 de ciências, 6 gostam de ambas. Quantos não gostam de nenhuma?", opts:["2","4","6","8"], ans:1, lvl:"dificil", cat:"Problemas"},
+  // Padrões
+  {q:"Quantos quadradinhos tem a figura 10 da sequência 1,4,9,16,25,...?", opts:["81","100","121","64"], ans:1, lvl:"medio", cat:"Padrões"},
+  {q:"A soma dos 10 primeiros números naturais (1 a 10) é:",               opts:["50","55","60","45"],  ans:1, lvl:"medio", cat:"Padrões"},
+  {q:"Qual é o próximo: 3, 6, 12, 24, ___?",  opts:["36","48","42","30"],  ans:1, lvl:"facil", cat:"Padrões"},
+  {q:"Qual é o próximo: 100, 95, 85, 70, ___?", opts:["60","55","50","45"], ans:2, lvl:"dificil", cat:"Padrões"},
+  {q:"Quantos triângulos há em um triângulo dividido em 4 linhas? (1+3+6+10...)", opts:["10","15","21","28"], ans:0, lvl:"dificil", cat:"Padrões"},
+  // Velocidade / Medidas
+  {q:"Um trem viaja 360 km em 4 horas. Qual sua velocidade média?", opts:["80 km/h","90 km/h","100 km/h","72 km/h"], ans:1, lvl:"medio", cat:"Medidas"},
+  {q:"Quantos milímetros há em 3,5 cm?",        opts:["35 mm","350 mm","3,5 mm","0,35 mm"], ans:0, lvl:"facil", cat:"Medidas"},
+  {q:"Quantos minutos há em 2 horas e meia?",   opts:["120","130","150","140"],  ans:2, lvl:"facil", cat:"Medidas"},
+];
+
+const AVATARS = ["🐯","🦊","🐸","🦁","🐼","🦝","🐨","🦄","🐧","🦋","🐬","🦜","🐺","🦓","🐊","🦒"];
+const AVG_COLORS = ["#F5EBF5","#FFF3EA","#EBF5FB","#FDFEFE","#F9EBEA","#EAF4EC","#FEF9E7","#F4ECF7"];
+
+/* ── STATE ─────────────────────────────────────────────── */
+let player = null, players = {};
+let currentQ=0, questions=[], score=0, correct=0, wrong=0, timeBonus=0;
+let timerInt=null, timeLeft=30, currentMode='daily', answered=false;
+let rankTab='daily';
+
+/* ── STORAGE ────────────────────────────────────────────── */
+function load(){ try{ const r=localStorage.getItem('canguru_v2'); if(r) players=JSON.parse(r); }catch(e){players={};} }
+function save(){ try{ localStorage.setItem('canguru_v2',JSON.stringify(players)); }catch(e){} }
+function todayKey(){ const d=new Date(); return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`; }
+
+function upsertPlayer(name,cls){
+  const k=name.toLowerCase().trim();
+  if(!players[k]){
+    players[k]={ name:name.trim(), class:cls,
+      avatar:AVATARS[Math.floor(Math.random()*AVATARS.length)],
+      totalPts:0, totalCorrect:0, totalGames:0,
+      streak:0, lastDay:'', days:{}, achievements:[] };
+  }
+  return players[k];
+}
+
+function updateStreak(p){
+  const t=todayKey(), d=new Date(), y=new Date(d);
+  y.setDate(d.getDate()-1);
+  const yk=`${y.getFullYear()}-${y.getMonth()+1}-${y.getDate()}`;
+  if(p.lastDay===t) return;
+  p.streak = (p.lastDay===yk) ? p.streak+1 : 1;
+  p.lastDay=t;
+}
+
+function recordResult(pts,c,w){
+  if(!player) return;
+  const t=todayKey();
+  if(!player.days[t]) player.days[t]={pts:0,games:0};
+  player.days[t].pts+=pts; player.days[t].games+=1;
+  player.totalPts+=pts; player.totalCorrect+=c; player.totalGames+=1;
+  updateStreak(player);
+  const newAch=checkAchievements();
+  save();
+  return newAch;
+}
+
+/* ── ACHIEVEMENTS ───────────────────────────────────────── */
+const ACHS=[
+  {id:'first',   icon:'🌟', name:'1ª Rodada!',      check:p=>p.totalGames>=1},
+  {id:'streak3', icon:'🔥', name:'3 Dias Seguidos',  check:p=>p.streak>=3},
+  {id:'streak7', icon:'🏅', name:'Semana Perfeita',  check:p=>p.streak>=7},
+  {id:'c10',     icon:'✅', name:'10 Acertos',       check:p=>p.totalCorrect>=10},
+  {id:'c50',     icon:'🎯', name:'50 Acertos',       check:p=>p.totalCorrect>=50},
+  {id:'g5',      icon:'🎮', name:'5 Partidas',       check:p=>p.totalGames>=5},
+  {id:'p100',    icon:'💯', name:'100 Pontos',       check:p=>p.totalPts>=100},
+  {id:'p500',    icon:'💰', name:'500 Pontos',       check:p=>p.totalPts>=500},
+];
+function checkAchievements(){
+  if(!player) return null;
+  for(const a of ACHS){
+    if(!player.achievements.includes(a.id) && a.check(player)){
+      player.achievements.push(a.id); return a;
+    }
+  }
+  return null;
+}
+function renderAchs(){
+  const g=document.getElementById('ach-grid');
+  if(!g) return;
+  g.innerHTML=ACHS.map(a=>{
+    const on=player&&player.achievements.includes(a.id);
+    return`<div class="ach-item${on?' unlocked':''}">
+      <div class="ach-icon">${a.icon}</div>
+      <div class="ach-name">${a.name}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ── SCREENS ─────────────────────────────────────────────── */
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+id).classList.add('active');
+  document.getElementById('btn-rank-hdr').style.display=player?'block':'none';
+  if(id==='dashboard') updateDash();
+  if(id==='ranking')   renderRanking();
+}
+
+/* ── LOGIN ───────────────────────────────────────────────── */
+function handleLogin(){
+  const name=document.getElementById('input-name').value.trim();
+  const cls =document.getElementById('input-class').value;
+  if(name.length<2){ toast('⚠️ Digite seu nome completo!'); return; }
+  if(!cls){ toast('⚠️ Selecione sua turma!'); return; }
+  load();
+  player=upsertPlayer(name,cls);
+  save();
+  showScreen('dashboard');
+}
+
+/* ── DASHBOARD ───────────────────────────────────────────── */
+function updateDash(){
+  if(!player) return;
+  document.getElementById('dash-name').textContent=player.name.split(' ')[0];
+  document.getElementById('dash-class').textContent=player.class;
+  const t=todayKey(), td=player.days[t]||{pts:0,games:0};
+  document.getElementById('di-jogadas').textContent=td.games;
+  document.getElementById('di-pts-hoje').textContent=td.pts;
+  document.getElementById('di-pts-total').textContent=player.totalPts;
+  document.getElementById('streak-val').textContent=player.streak;
+  document.getElementById('stat-streak').textContent=player.streak;
+  document.getElementById('stat-acertos').textContent=player.totalCorrect;
+  const sorted=Object.values(players).sort((a,b)=>b.totalPts-a.totalPts);
+  const pos=sorted.findIndex(p=>p.name.toLowerCase().trim()===player.name.toLowerCase().trim())+1;
+  document.getElementById('stat-pos').textContent=pos>0?'#'+pos:'—';
+  renderAchs();
+}
+
+/* ── QUIZ ────────────────────────────────────────────────── */
+function startQuiz(mode){
+  if(!player){ showScreen('home'); return; }
+  currentMode=mode;
+  if(mode==='daily'){
+    const t=todayKey(), td=player.days[t]||{pts:0,games:0};
+    if(td.games>=5){ toast('🌙 Limite diário atingido! Volte amanhã.'); return; }
+  }
+  let pool=[...QB]; shuffle(pool);
+  const n=mode==='rapido'?5:10;
+  questions=pool.slice(0,n);
+  currentQ=0; score=0; correct=0; wrong=0; timeBonus=0; answered=false;
+  const labels={daily:'📅 Desafio do Dia',treino:'🧠 Treino Livre',rapido:'⚡ Relâmpago'};
+  document.getElementById('quiz-mode-badge').textContent=labels[mode]||'Quiz';
+  showScreen('quiz');
+  renderQ();
+}
+
+function renderQ(){
+  if(currentQ>=questions.length){ endQuiz(); return; }
+  answered=false;
+  const q=questions[currentQ], tot=questions.length;
+  document.getElementById('q-num').textContent=`Questão ${currentQ+1} de ${tot}`;
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('progress-fill').style.width=((currentQ/tot)*100)+'%';
+  const lvMap={facil:['lv-f','🟢 Fácil'],medio:['lv-m','🟡 Médio'],dificil:['lv-d','🔴 Difícil']};
+  const lv=lvMap[q.lvl]||lvMap.facil;
+  const lvEl=document.getElementById('q-level');
+  lvEl.className='q-level '+lv[0]; lvEl.textContent=lv[1];
+  const letters=['A','B','C','D'];
+  document.getElementById('opts-grid').innerHTML=q.opts.map((o,i)=>
+    `<button class="opt-btn" id="opt${i}" onclick="pick(${i})">
+      <span class="opt-letter">${letters[i]}</span><span>${o}</span>
+    </button>`
+  ).join('');
+  const sec=q.lvl==='dificil'?40:q.lvl==='medio'?30:25;
+  startTimer(sec);
+}
+
+function startTimer(s){
+  clearInterval(timerInt); timeLeft=s; tickTimer();
+  timerInt=setInterval(()=>{ timeLeft--; tickTimer(); if(timeLeft<=0){ clearInterval(timerInt); if(!answered) timeout(); }},1000);
+}
+function tickTimer(){
+  document.getElementById('timer-num').textContent=timeLeft;
+  document.getElementById('timer-num').className='timer-num'+(timeLeft<=8?' warn':'');
+  const ring=document.getElementById('ring-val');
+  const circ=138.2, offset=circ-(circ*(timeLeft/30));
+  ring.style.strokeDashoffset=Math.max(0,offset);
+  ring.className='ring-val'+(timeLeft<=8?' warn':'');
+}
+
+function pick(idx){
+  if(answered) return;
+  answered=true; clearInterval(timerInt);
+  const q=questions[currentQ];
+  const ok=idx===q.ans;
+  const bonus=ok?Math.floor(timeLeft*0.5):0;
+  const pts=ok?(q.lvl==='dificil'?30:q.lvl==='medio'?20:10)+bonus:0;
+  if(ok){ correct++; score+=pts; timeBonus+=bonus; document.getElementById('opt'+idx).classList.add('correct'); }
+  else  { wrong++;   document.getElementById('opt'+idx).classList.add('wrong'); document.getElementById('opt'+q.ans).classList.add('correct'); }
+  document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
+  showFeedback(ok,pts);
+  setTimeout(()=>{ hideFeedback(); currentQ++; renderQ(); },1400);
+}
+
+function timeout(){
+  if(answered) return; answered=true; wrong++;
+  const q=questions[currentQ];
+  document.getElementById('opt'+q.ans).classList.add('correct');
+  document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
+  showFeedback(false,0,true);
+  setTimeout(()=>{ hideFeedback(); currentQ++; renderQ(); },1400);
+}
+
+function showFeedback(ok,pts,time=false){
+  const fp=document.getElementById('feedback-pop');
+  document.getElementById('fb-emoji').textContent=time?'⏰':ok?'🎉':'😅';
+  document.getElementById('fb-title').textContent=time?'Tempo esgotado!':ok?'Correto!':'Quase lá!';
+  document.getElementById('fb-pts').textContent=ok?`+${pts} pontos`:'Continue tentando!';
+  fp.className='feedback-pop show'+(ok?'':' err');
+  document.getElementById('overlay-bg').className='overlay-bg show';
+}
+function hideFeedback(){
+  document.getElementById('feedback-pop').className='feedback-pop';
+  document.getElementById('overlay-bg').className='overlay-bg';
+}
+
+function endQuiz(){
+  clearInterval(timerInt);
+  const newAch=recordResult(score,correct,wrong);
+  const pct=correct/questions.length;
+  let trophy='🏆',h1='Incrível!',sub='Você arrasou!';
+  if(pct<0.4){trophy='🌱';h1='Continue Treinando!';sub='Cada erro é um aprendizado!';}
+  else if(pct<0.7){trophy='⭐';h1='Bom Trabalho!';sub='Está melhorando muito!';}
+  else if(pct<1){trophy='🥇';h1='Muito Bem!';sub='Quase perfeito!';}
+  document.getElementById('result-trophy').textContent=trophy;
+  document.getElementById('result-h1').textContent=h1;
+  document.getElementById('result-sub').textContent=sub;
+  document.getElementById('rsc-pts').textContent=score;
+  document.getElementById('rb-c').textContent=correct;
+  document.getElementById('rb-w').textContent=wrong;
+  document.getElementById('rb-b').textContent=timeBonus;
+  const box=document.getElementById('ach-unlock-box');
+  if(newAch){ box.style.display='block'; document.getElementById('aub-icon').textContent=newAch.icon; document.getElementById('aub-name').textContent='🏅 Nova conquista: '+newAch.name; }
+  else box.style.display='none';
+  showScreen('result');
+}
+
+/* ── RANKING ─────────────────────────────────────────────── */
+function switchTab(tab,btn){
+  rankTab=tab;
+  document.querySelectorAll('.rank-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderRanking();
+}
+
+function renderRanking(){
+  const filter=document.getElementById('rank-filter')?.value||'all';
+  let data=Object.values(players);
+  if(filter!=='all') data=data.filter(p=>p.class===filter);
+  const t=todayKey();
+  const getScore=p=>rankTab==='daily'?(p.days[t]||{pts:0}).pts:rankTab==='streak'?p.streak:p.totalPts;
+
+  if(rankTab==='class'){ renderClassRank(data); return; }
+  const sorted=[...data].sort((a,b)=>getScore(b)-getScore(a));
+  renderPodium(sorted.slice(0,3),getScore);
+  const lbl=rankTab==='streak'?'dias':'pts';
+  const list=document.getElementById('rank-list');
+  if(!sorted.length){
+    list.innerHTML='<div style="text-align:center;padding:36px;color:var(--text-muted);font-weight:700">Nenhum jogador nesta turma ainda!</div>';
+    return;
+  }
+  list.innerHTML=sorted.map((p,i)=>{
+    const pc={0:'g',1:'s',2:'b'}; const pn={0:'🥇',1:'🥈',2:'🥉'};
+    const pc2={0:'r1',1:'r2',2:'r3'};
+    const isMe=player&&p.name.toLowerCase().trim()===player.name.toLowerCase().trim();
+    return`<div class="rank-row ${pc2[i]||''} ${isMe?'is-me':''}">
+      <div class="rr-pos ${pc[i]||''}">${pn[i]||(i+1)}</div>
+      <div class="rr-avatar" style="background:${AVG_COLORS[i%AVG_COLORS.length]}">${p.avatar}</div>
+      <div class="rr-info">
+        <div class="rr-name">${p.name}</div>
+        <div class="rr-class">🏫 ${p.class}${rankTab!=='streak'?' &nbsp;🔥 '+p.streak+' dias':''}</div>
+      </div>
+      ${isMe?'<span class="me-tag">VOCÊ</span>':''}
+      <div class="rr-score">
+        <div class="rr-pts">${getScore(p)}</div>
+        <div class="rr-lbl">${lbl}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderClassRank(data){
+  document.getElementById('podium-wrap').innerHTML='';
+  const map={};
+  data.forEach(p=>{ if(!map[p.class]) map[p.class]={c:p.class,pts:0,n:0}; map[p.class].pts+=p.totalPts; map[p.class].n++; });
+  const arr=Object.values(map).sort((a,b)=>b.pts-a.pts);
+  const medals=['🥇','🥈','🥉'];
+  const pc2=['r1','r2','r3'];
+  document.getElementById('rank-list').innerHTML=arr.map((c,i)=>
+    `<div class="rank-row ${pc2[i]||''}">
+      <div class="rr-pos ${i===0?'g':i===1?'s':i===2?'b':''}">${medals[i]||(i+1)}</div>
+      <div class="rr-avatar" style="background:#F5EBF5;font-size:1.5rem">🏫</div>
+      <div class="rr-info">
+        <div class="rr-name">${c.c}</div>
+        <div class="rr-class">${c.n} aluno(s)</div>
+      </div>
+      <div class="rr-score">
+        <div class="rr-pts">${c.pts}</div>
+        <div class="rr-lbl">pontos</div>
+      </div>
+    </div>`
+  ).join('');
+}
+
+function renderPodium(top,getScore){
+  const p=document.getElementById('podium-wrap');
+  if(!top.length){ p.innerHTML=''; return; }
+  const ord=[top[1],top[0],top[2]].filter(Boolean);
+  const h=['58px','84px','40px'], medals=['🥈','🥇','🥉'];
+  p.innerHTML=ord.map((x,i)=>{
+    const big=i===1;
+    return`<div class="podium-col">
+      <div class="podium-avatar"${big?' style="width:64px;height:64px;font-size:1.9rem"':''}>${x.avatar}</div>
+      <div class="podium-name">${x.name.split(' ')[0]}</div>
+      <div class="podium-score">${getScore(x)} pts</div>
+      <div class="podium-block" style="height:${h[i]}"><span class="podium-medal">${medals[i]}</span></div>
+    </div>`;
+  }).join('');
+}
+
+/* ── UTILS ───────────────────────────────────────────────── */
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } }
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); }
+function updateCountdown(){
+  const now=new Date(), target=new Date(now); target.setDate(now.getDate()+7);
+  const d=Math.max(0,Math.ceil((target-now)/(86400000)));
+  document.getElementById('countdown-num').textContent=d;
+}
+
+/* ── DEMO DATA ───────────────────────────────────────────── */
+function seedDemo(){
+  const t=todayKey();
+  const demo=[
+    {n:'Lucas Ferreira',    c:'4º Ano A Manhã', pts:320,cor:45,s:4},
+    {n:'Beatriz Lima',      c:'4º Ano B Manhã', pts:280,cor:38,s:3},
+    {n:'Rafael Costa',      c:'4º Ano A Tarde', pts:195,cor:28,s:2},
+    {n:'Sophia Alves',      c:'4º Ano A Manhã', pts:410,cor:60,s:6},
+    {n:'Miguel Rocha',      c:'4º Ano B Tarde', pts:150,cor:22,s:1},
+    {n:'Isabela Mendes',    c:'4º Ano B Manhã', pts:375,cor:52,s:5},
+    {n:'Gabriel Souza',     c:'4º Ano A Tarde', pts:225,cor:32,s:3},
+    {n:'Ana Beatriz',       c:'4º Ano B Tarde', pts:340,cor:48,s:4},
+    {n:'Valentina Cruz',    c:'4º Ano A Manhã', pts:290,cor:42,s:3},
+    {n:'Davi Oliveira',     c:'4º Ano B Tarde', pts:180,cor:25,s:2},
+  ];
+  demo.forEach(d=>{
+    const k=d.n.toLowerCase().trim();
+    if(!players[k]) players[k]={
+      name:d.n, class:d.c,
+      avatar:AVATARS[Math.floor(Math.random()*AVATARS.length)],
+      totalPts:d.pts, totalCorrect:d.cor, totalGames:Math.floor(d.pts/25),
+      streak:d.s, lastDay:t,
+      days:{[t]:{pts:Math.floor(d.pts*0.15),games:2}},
+      achievements:d.pts>300?['first','g5','c10','p100','p500']:['first','g5','c10']
+    };
+  });
+  save();
+}
+
+/* ── INIT ────────────────────────────────────────────────── */
+load();
+seedDemo();
+updateCountdown();
+</script>
+</body>
+</html>
